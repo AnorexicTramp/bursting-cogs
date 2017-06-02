@@ -126,7 +126,7 @@ class ModLog:
 
     @modlogtoggles.command(pass_context=True, no_pm=True)
     async def server(self, ctx):
-        """toggles notofications when the server updates."""
+        """toggles notifications when the server updates."""
         server = ctx.message.server
         db = fileIO(self.direct, "load")
         if db[server.id]["toggleserver"] == False:
@@ -255,8 +255,7 @@ class ModLog:
             name = message.author
             name = " ~ ".join((name.name, name.nick)) if name.nick else name.name
             delmessage = discord.Embed(description=name, colour=discord.Color.purple())
-            infomessage = "A message by __{}__, was deleted in {}".format(
-                message.author.nick if message.author.nick else message.author.name, message.channel.mention)
+            infomessage = "A message by <@{}>, was deleted in {}".format(message.author.id, message.channel.mention)
             delmessage.add_field(name="Info:", value=infomessage, inline=False)
             delmessage.add_field(name="Message:", value=cleanmsg)
             delmessage.set_footer(text="User ID: {}".format(message.author.id))
@@ -286,8 +285,8 @@ class ModLog:
         if db[server.id]["embed"] == True:
             name = member
             name = " ~ ".join((name.name, name.nick)) if name.nick else name.name
-            joinmsg = discord.Embed(description=name, colour=discord.Color.red())
-            infomessage = "__{}__ has joined the server.".format(member.nick if member.nick else member.name)
+            joinmsg = discord.Embed(description=name, colour=discord.Color.dark_green())
+            infomessage = "<@{}> has joined the server.".format(member.id)
             joinmsg.add_field(name="Info:", value=infomessage, inline=False)
             joinmsg.set_footer(text="User ID: {}".format(member.id))
             joinmsg.set_author(name=time.strftime(fmt) + " - Joined User",
@@ -318,7 +317,7 @@ class ModLog:
             name = member
             name = " ~ ".join((name.name, name.nick)) if name.nick else name.name
             leave = discord.Embed(description=name, colour=discord.Color.red())
-            infomessage = "__{}__ has left the server.".format(member.nick if member.nick else member.name)
+            infomessage = "<@{}> has left the server.".format(member.id)
             leave.add_field(name="Info:", value=infomessage, inline=False)
             leave.set_footer(text="User ID: {}".format(member.id))
             leave.set_author(name=time.strftime(fmt) + " - Leaving User",
@@ -486,15 +485,14 @@ class ModLog:
         if db[server.id]["embed"] == True:
             name = before.author
             name = " ~ ".join((name.name, name.nick)) if name.nick else name.name
-            delmessage = discord.Embed(description=name, colour=discord.Color.green())
-            infomessage = "A message by __{}__, was edited in {}".format(
-                before.author.nick if before.author.nick else before.author.name, before.channel.mention)
+            delmessage = discord.Embed(description=name, colour=discord.Color.light_grey())
+            infomessage = "A message by <@{}>, was edited in {}".format(before.author.id, before.channel.mention)
             delmessage.add_field(name="Info:", value=infomessage, inline=False)
             delmessage.add_field(name="Before Message:", value=cleanbefore, inline=False)
             delmessage.add_field(name="After Message:", value=cleanafter)
             delmessage.set_footer(text="User ID: {}".format(before.author.id))
-            delmessage.set_author(name=time.strftime(fmt) + " - Edited Message", url="http://i.imgur.com/Q8SzUdG.png")
-            delmessage.set_thumbnail(url="http://i.imgur.com/Q8SzUdG.png")
+            delmessage.set_author(name=time.strftime(fmt) + " - Edited Message", url="https://cdn.discordapp.com/attachments/276355126736715776/319975080631468032/Edited.png")
+            delmessage.set_thumbnail(url="https://cdn.discordapp.com/attachments/276355126736715776/319975080631468032/Edited.png")
             try:
                 await self.bot.send_message(server.get_channel(channel), embed=delmessage)
             except:
@@ -638,8 +636,8 @@ class ModLog:
         if db[server.id]["embed"] == True:
             name = member
             name = " ~ ".join((name.name, name.nick)) if name.nick else name.name
-            banmessage = discord.Embed(description=name, colour=discord.Color.red())
-            infomessage = "__{}__ has been banned from the server.".format(member.nick if member.nick else member.name)
+            banmessage = discord.Embed(description=name, colour=discord.Color.dark_red())
+            infomessage = "<@{}> has been banned from the server.".format(member.id)
             banmessage.add_field(name="Info:", value=infomessage, inline=False)
             banmessage.set_footer(text="User ID: {}".format(member.id))
             banmessage.set_author(name=time.strftime(fmt) + " - Banned User", url="http://i.imgur.com/Imx0Znm.png")
