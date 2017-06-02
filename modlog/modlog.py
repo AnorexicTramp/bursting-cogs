@@ -98,7 +98,7 @@ class ModLog:
 
     @modlogtoggles.command(pass_context=True, no_pm=True)
     async def edit(self, ctx):
-        """toggle notifications when a member edits theyre message"""
+        """toggle notifications when a member edits their message"""
         server = ctx.message.server
         db = fileIO(self.direct, "load")
         if db[server.id]["toggleedit"] == False:
@@ -112,7 +112,7 @@ class ModLog:
 
     @modlogtoggles.command(pass_context=True, no_pm=True)
     async def join(self, ctx):
-        """toggles notofications when a member joins the server."""
+        """toggles notifications when a member joins the server."""
         server = ctx.message.server
         db = fileIO(self.direct, "load")
         if db[server.id]["togglejoin"] == False:
@@ -154,7 +154,7 @@ class ModLog:
 
     @modlogtoggles.command(pass_context=True, no_pm=True)
     async def leave(self, ctx):
-        """toggles notofications when a member leaves the server."""
+        """toggles notifications when a member leaves the server."""
         server = ctx.message.server
         db = fileIO(self.direct, "load")
         if db[server.id]["toggleleave"] == False:
@@ -168,7 +168,7 @@ class ModLog:
 
     @modlogtoggles.command(pass_context=True, no_pm=True)
     async def delete(self, ctx):
-        """toggle notifications when a member delete theyre message"""
+        """toggle notifications when a member delete their message"""
         server = ctx.message.server
         db = fileIO(self.direct, "load")
         if db[server.id]["toggledelete"] == False:
